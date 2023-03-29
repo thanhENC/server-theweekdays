@@ -30,9 +30,14 @@ app.get("/api", (req, res) => {
     res.send("This Web server is processed for MongoDB")
 })
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+// const uri = "mongodb+srv://doadmin:2I4iK1R60g7c8DE5@db-mongodb-sgp1-62736-79afbb0c.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-62736"
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://doadmin:2I4iK1R60g7c8DE5@db-mongodb-sgp1-62736-79afbb0c.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-62736"
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const client = new MongoClient(uri);
+
 client.connect(err => {
   const collection = client.db("theweekdays").collection("product");
   // perform actions on the collection object
