@@ -34,8 +34,12 @@ app.get("/api", (req, res) => {
 // const uri = "mongodb+srv://doadmin:2I4iK1R60g7c8DE5@db-mongodb-sgp1-62736-79afbb0c.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-62736"
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://doadmin:2I4iK1R60g7c8DE5@db-mongodb-sgp1-62736-79afbb0c.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-62736"
+const { MongoClient, ObjectId } = require('mongodb');
+// Digital Ocean MongoDB
+// const uri = "mongodb+srv://doadmin:2I4iK1R60g7c8DE5@db-mongodb-sgp1-62736-79afbb0c.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-62736"
+
+// MongoDB Atlas
+const uri = "mongodb+srv://thanhenc:9fdWvVT0yJTPV3n8@k20411-web2.3xcbrui.mongodb.net/test"
 const client = new MongoClient(uri);
 
 client.connect(err => {
@@ -48,9 +52,20 @@ client.connect(err => {
 database = client.db("theweekdays");
 collection = database.collection("product");
 
+// get all products
 app.get("/api/products", async (req, res) => {
     try {
         const result = await collection.find({}).toArray();
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+// get product by id
+app.get("/api/products/:id", async (req, res) => {
+    try {
+        const result = await collection.findOne({ _id: req.params.id });
         res.send(result);
     } catch (error) {
         console.log(error);
