@@ -1,0 +1,47 @@
+[
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff962"
+        },
+        "product_id": "JGM10",
+        "name": "S",
+        "in_stock": true,
+        "available_quantity": 100
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff963"
+        },
+        "product_id": "JGM10",
+        "name": "M",
+        "in_stock": true,
+        "available_quantity": 100
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff964"
+        },
+        "product_id": "JGM10",
+        "name": "L",
+        "in_stock": true,
+        "available_quantity": 100
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff965"
+        },
+        "product_id": "JGM10",
+        "name": "XL",
+        "in_stock": false,
+        "available_quantity": 0
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff966"
+        },
+        "product_id": "JGM10",
+        "name": "XXL",
+        "in_stock": false,
+        "available_quantity": 0
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff710"
+        },
+        "customer_id": "640b187e71d9faa9039ff001",
+        "name": "Dinh Van An",
+        "city": "TP. Ho Chi Minh",
+        "district": "TP. Thu Duc",
+        "address_detail": "90 No.8 street, Linh Xuan",
+        "is_default": false,
+        "phone": "0328783600"
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff711"
+        },
+        "customer_id": "640b187e71d9faa9039ff001",
+        "name": "Thanh An",
+        "city": "TP. Ho Chi Minh",
+        "district": "TP. Thu Duc",
+        "address_detail": "669 Highway 1, Linh Xuan",
+        "is_default": true,
+        "phone": "0328783600"
+    }
+]

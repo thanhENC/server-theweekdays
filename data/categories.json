@@ -1,0 +1,24 @@
+[
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff960"
+        },
+        "name": "Quần Kaki",
+        "type": "Quần",
+        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
+        "count": 1,
+        "date_added": "2023-04-10T00:00:00.000Z",
+        "date_modified": "2023-04-10T00:00:00.000Z"
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9038ff911"
+        },
+        "name": "Quần Jean",
+        "type": "Quần",
+        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
+        "count": 0,
+        "date_added": "2023-04-10T00:00:00.000Z",
+        "date_modified": "2023-04-10T00:00:00.000Z"
+    }
+]
