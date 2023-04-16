@@ -34,5 +34,17 @@
         "register_date": "2023-04-14T13:32:16.189Z",
         "last_active": "2023-04-18T17:30:11.189Z",
         "is_deleted": false
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff004"
+        },
+        "username": "tempuser",
+        "email": "tempuser@st.uel.edu.vn",
+        "phone": "0567891111",
+        "password": "123456789",
+        "register_date": "2023-04-14T13:32:16.189Z",
+        "last_active": "2023-04-18T17:30:11.189Z",
+        "is_deleted": true
     }
 ]

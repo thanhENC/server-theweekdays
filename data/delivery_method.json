@@ -4,20 +4,26 @@
             "$oid": "640b187e71d9faa9039ff100"
         },
         "method": "ViettelPost",
-        "image": "https://play-lh.googleusercontent.com/Dwr4oRdOVN4KhK412BxtRSvzJQqh7XoK6vZXursL0nnGxfIt_uutp-24TZwuyMbTvP5z"
+        "image": "https://play-lh.googleusercontent.com/Dwr4oRdOVN4KhK412BxtRSvzJQqh7XoK6vZXursL0nnGxfIt_uutp-24TZwuyMbTvP5z",
+        "in_city": 20000,
+        "out_of_city": 40000
     },
     {
         "_id": {
             "$oid": "640b187e71d9faa9039ff101"
         },
         "method": "Giao Hàng Nhanh",
-        "image": "https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/company-logo/21434b9335a66cee2bc2136464709992.jpg"
+        "image": "https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/company-logo/21434b9335a66cee2bc2136464709992.jpg",
+        "in_city": 20000,
+        "out_of_city": 45000
     },
     {
         "_id": {
             "$oid": "640b187e71d9faa9039ff102"
         },
         "method": "Giao Hàng Tiết Kiệm",
-        "image": "https://play-lh.googleusercontent.com/do7k2g62J62JZ8W8lgADDkhTpr5P3BN_gsMWKuwN-QzY_zmed9Rw3pKu4HT6JLdkocw"
+        "image": "https://play-lh.googleusercontent.com/do7k2g62J62JZ8W8lgADDkhTpr5P3BN_gsMWKuwN-QzY_zmed9Rw3pKu4HT6JLdkocw",
+        "in_city": 25000,
+        "out_of_city": 35000
     }
 ]

@@ -3,7 +3,7 @@
         "_id": {
             "$oid": "640b187e71d9faa9039ff710"
         },
-        "customer_id": "640b187e71d9faa9039ff001",
+        "customer_id": "640b187e71d9faa9039ff000",
         "name": "Dinh Van An",
         "city": "TP. Ho Chi Minh",
         "district": "TP. Thu Duc",
@@ -15,7 +15,7 @@
         "_id": {
             "$oid": "640b187e71d9faa9039ff711"
         },
-        "customer_id": "640b187e71d9faa9039ff001",
+        "customer_id": "640b187e71d9faa9039ff000",
         "name": "Thanh An",
         "city": "TP. Ho Chi Minh",
         "district": "TP. Thu Duc",

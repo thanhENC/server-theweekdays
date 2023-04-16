@@ -3,39 +3,44 @@
         "_id": {
             "$oid": "640b187e71d9faa9039ff000"
         },
-        "customer_id": "640b187e71d9faa9039ff001",
+        "account_id": "640b187e71d9faa9039ff001",
         "name": "Dinh Van An",
         "dob": "2000-03-20T00:00:00.000Z",
         "gender": "male",
         "membership": 150,
-        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
-        "phone": "0123456789",
-        "email": ""
+        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
     },
     {
         "_id": {
             "$oid": "640b187e71d9faa9039ff099"
         },
-        "customer_id": "640b187e71d9faa9039ff002",
+        "account_id": "640b187e71d9faa9039ff002",
         "name": "Dinh Hoan Hao",
         "dob": "2002-03-20T00:00:00.000Z",
         "gender": "male",
         "membership": 250,
-        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
-        "phone": "0909123455",
-        "email": "haodh20411@st.uel.edu.vn"
+        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
     },
     {
         "_id": {
             "$oid": "640b187e71d9faa9039ff098"
         },
-        "customer_id": "640b187e71d9faa9039ff003",
+        "account_id": "640b187e71d9faa9039ff003",
         "name": "Nguyen Gia Hung",
         "dob": "2001-03-20T00:00:00.000Z",
         "gender": "male",
         "membership": 275,
-        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
-        "phone": "0567891234",
-        "email": "hungng20411@st.uel.edu.vn"
+        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff097"
+        },
+        "account_id": "640b187e71d9faa9039ff004",
+        "name": "Temp User",
+        "dob": "2003-03-20T00:00:00.000Z",
+        "gender": "female",
+        "membership": 100,
+        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
     }
 ]
