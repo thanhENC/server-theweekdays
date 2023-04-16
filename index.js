@@ -53,3 +53,7 @@ app.use("/v1/products", productRoute);
 // II. Address list: /v1/address
 const addressRoute = require("./routes/address");
 app.use("/v1/address", addressRoute);
+
+// Continue with other routes...........
+
+// ====================================================
