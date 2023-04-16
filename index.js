@@ -1,6 +1,7 @@
 // import dotenv from 'dotenv';
 // dotenv.config();
 
+// =================SETTING UP EXPRESS=================
 const express = require('express');
 const app = express();
 // const port = process.env.PORT || 4000;
@@ -26,48 +27,29 @@ app.listen(port, () => {
     console.log(`Server-Fashion listening on port ${port}`)
 })
 
+// // =================SETTING UP MONGODB=================
+// const { MongoClient, ObjectId } = require('mongodb');
+
+// // MongoDB Atlas
+// const uri = "mongodb+srv://thanhenc:9fdWvVT0yJTPV3n8@k20411-web2.3xcbrui.mongodb.net/test"
+// const client = new MongoClient(uri);
+
+// client.connect(err => {
+//     const collection = client.db("theweekdays").collection("product");
+//     // perform actions on the collection object
+//     console.log("Connected to MongoDB")
+//     client.close();
+// });
+
+// =================SETTING UP ROUTES=================
 app.get("/api", (req, res) => {
     res.send("This Web server is processed for MongoDB")
 })
 
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://doadmin:2I4iK1R60g7c8DE5@db-mongodb-sgp1-62736-79afbb0c.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-62736"
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// I. Product: /v1/products
+const productRoute = require("./routes/product");
+app.use("/v1/products", productRoute);
 
-const { MongoClient, ObjectId } = require('mongodb');
-// Digital Ocean MongoDB
-// const uri = "mongodb+srv://doadmin:2I4iK1R60g7c8DE5@db-mongodb-sgp1-62736-79afbb0c.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-62736"
-
-// MongoDB Atlas
-const uri = "mongodb+srv://thanhenc:9fdWvVT0yJTPV3n8@k20411-web2.3xcbrui.mongodb.net/test"
-const client = new MongoClient(uri);
-
-client.connect(err => {
-  const collection = client.db("theweekdays").collection("product");
-  // perform actions on the collection object
-  console.log("Connected to MongoDB")
-  client.close();
-});
-
-database = client.db("theweekdays");
-collection = database.collection("product");
-
-// get all products
-app.get("/api/products", async (req, res) => {
-    try {
-        const result = await collection.find({}).toArray();
-        res.send(result);
-    } catch (error) {
-        console.log(error);
-    }
-})
-
-// get product by id
-app.get("/api/products/:id", async (req, res) => {
-    try {
-        const result = await collection.findOne({ _id: req.params.id });
-        res.send(result);
-    } catch (error) {
-        console.log(error);
-    }
-})
+// II. Address list: /v1/address
+const addressRoute = require("./routes/address");
+app.use("/v1/address", addressRoute);
