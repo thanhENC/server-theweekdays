@@ -54,6 +54,10 @@ app.use("/v1/products", productRoute);
 const addressRoute = require("./routes/address");
 app.use("/v1/address", addressRoute);
 
+// IV. Category: /v1/category
+const categoryRoute = require("./routes/category");
+app.use("/v1/category", categoryRoute);
+
 // Continue with other routes...........
 
 // ====================================================
