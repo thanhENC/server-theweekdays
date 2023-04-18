@@ -35,6 +35,7 @@ router.get('/:cate_id', async (req, res) => {
 // 3. create new category
 router.post("/", async (req, res) => {
     try {
+        req.body.count = 0;
         req.body.date_added = new Date().toISOString();
         req.body.date_modified = new Date().toISOString();
 
