@@ -1,12 +1,32 @@
 [
     {
         "_id": {
+            "$oid": "640b187e71d9faa9039ff007"
+        },
+        "username": "sa",
+        "email": "systemadmin@theweekdays.live",
+        "phone": "0989 889 889",
+        "password": "123456789",
+        "type": {
+            "admin": true,
+            "role": "system admin"
+        },
+        "register_date": "2023-04-14T13:32:16.189Z",
+        "last_active": "2023-04-18T17:30:11.189Z",
+        "is_deleted": false
+    },
+    {
+        "_id": {
             "$oid": "640b187e71d9faa9039ff001"
         },
         "username": "thanhenc",
         "email": "thanhenc@gmail.com",
         "phone": "0328783600",
         "password": "123456789",
+        "type": {
+            "admin": false,
+            "role": "customer"
+        },
         "register_date": "2023-04-14T13:32:16.189Z",
         "last_active": "2023-04-18T17:30:11.189Z",
         "is_deleted": false
@@ -19,6 +39,10 @@
         "email": "haodh20411@st.uel.edu.vn",
         "phone": "0909123455",
         "password": "123456789",
+        "type": {
+            "admin": false,
+            "role": "customer"
+        },
         "register_date": "2023-04-14T13:32:16.189Z",
         "last_active": "2023-04-18T17:30:11.189Z",
         "is_deleted": false
@@ -31,6 +55,10 @@
         "email": "hungng20411@st.uel.edu.vn",
         "phone": "0567891234",
         "password": "123456789",
+        "type": {
+            "admin": false,
+            "role": "customer"
+        },
         "register_date": "2023-04-14T13:32:16.189Z",
         "last_active": "2023-04-18T17:30:11.189Z",
         "is_deleted": false
@@ -43,6 +71,10 @@
         "email": "tempuser@st.uel.edu.vn",
         "phone": "0567891111",
         "password": "123456789",
+        "type": {
+            "admin": false,
+            "role": "customer"
+        },
         "register_date": "2023-04-14T13:32:16.189Z",
         "last_active": "2023-04-18T17:30:11.189Z",
         "is_deleted": true

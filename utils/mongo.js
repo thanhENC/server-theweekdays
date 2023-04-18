@@ -30,7 +30,7 @@ const cart_collection = database.collection("cart");
 const category_collection = database.collection("category");
 const coupon_collection = database.collection("coupon");
 const customer_collection = database.collection("customer");
-const customer_account_collection = database.collection("customer_account");
+const account_collection = database.collection("account");
 const delivery_method_collection = database.collection("delivery_method");
 const order_collection = database.collection("order");
 const payment_method_collection = database.collection("payment_method");
@@ -38,4 +38,4 @@ const product_collection = database.collection("product");
 const variant_collection = database.collection("variant");
 const wishlist_collection = database.collection("wishlist");
 
-module.exports = { mongoconnect, database, address_collection, cart_collection, category_collection, coupon_collection, customer_collection, customer_account_collection, delivery_method_collection, order_collection, payment_method_collection, product_collection, variant_collection, wishlist_collection };
+module.exports = { mongoconnect, database, address_collection, cart_collection, category_collection, coupon_collection, customer_collection, account_collection, delivery_method_collection, order_collection, payment_method_collection, product_collection, variant_collection, wishlist_collection };
