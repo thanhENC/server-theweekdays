@@ -42,5 +42,16 @@
         "gender": "female",
         "membership": 100,
         "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff096"
+        },
+        "account_id": "640b187e71d9faa9039ff005",
+        "name": "Temp User 2",
+        "dob": "2003-03-20T00:00:00.000Z",
+        "gender": "female",
+        "membership": 100,
+        "image": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
     }
 ]
