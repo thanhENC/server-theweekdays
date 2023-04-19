@@ -63,28 +63,32 @@ router.post("/login/", async (req, res) => {
 // 3. Put update account by id
 router.put("/", async (req, res) => {
   //update json Fashion into database
-  await account_collection.updateOne(
-    { _id: new ObjectId(req.body._id) }, //condition for update
-    {
-      $set: {
-        username: req.body.username,
-        email: req.body.email,
-        phone: req.body.phone,
-        password: bcrypt.hashSync(req.body.password, 8),
-        type: {
-          admin: req.body.type.admin,
-          role: req.body.type.role,
+  try {
+    await account_collection.updateOne(
+      { _id: new ObjectId(req.body._id) }, //condition for update
+      {
+        $set: {
+          username: req.body.username,
+          email: req.body.email,
+          phone: req.body.phone,
+          password: bcrypt.hashSync(req.body.password, 8),
+          type: {
+            admin: req.body.type.admin,
+            role: req.body.type.role,
+          },
+          register_date: new Date(),
+          last_active: new Date(),
+          is_deleted: req.body.is_deleted,
         },
-        register_date: new Date(),
-        last_active: new Date(),
-        is_deleted: req.body.is_deleted,
-      },
-    }
-  );
-  //send Fahsion after updating
-  var o_id = new ObjectId(req.body._id);
-  const result = await account_collection.find({ _id: o_id }).toArray();
-  res.send(result[0]);
+      }
+    );
+    //send Fahsion after updating
+    var o_id = new ObjectId(req.body._id);
+    const result = await account_collection.find({ _id: o_id }).toArray();
+    res.send(result[0]);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // ===================================================

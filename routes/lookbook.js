@@ -31,28 +31,36 @@ router.post("/", async (req, res) => {
 
 // 3. update lookbook by id
 router.put("/", async (req, res) => {
-  await lookbook_collection.updateOne(
-    { _id: new ObjectId(req.body._id) }, //condition for update
-    {
-      $set: {
-        //Field for updating
-        image: req.body.image,
-        products: req.body.products,
-      },
-    }
-  );
-  var o_id = new ObjectId(req.body._id);
-  const result = await lookbook_collection.find({ _id: o_id }).toArray();
-  res.send(result[0]);
+  try {
+    await lookbook_collection.updateOne(
+      { _id: new ObjectId(req.body._id) }, //condition for update
+      {
+        $set: {
+          //Field for updating
+          image: req.body.image,
+          products: req.body.products,
+        },
+      }
+    );
+    var o_id = new ObjectId(req.body._id);
+    const result = await lookbook_collection.find({ _id: o_id }).toArray();
+    res.send(result[0]);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // 4. delete lookbook by id
 router.delete("/:id", async (req, res) => {
   //find detail Fashion with id
   var o_id = new ObjectId(req.params["id"]);
-  const result = await lookbook_collection.find({ _id: o_id }).toArray();
-  await lookbook_collection.deleteOne({ _id: o_id });
-  res.send(result[0]);
+  try {
+    const result = await lookbook_collection.find({ _id: o_id }).toArray();
+    await lookbook_collection.deleteOne({ _id: o_id });
+    res.send(result[0]);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //5. get all lookbook

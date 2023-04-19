@@ -44,20 +44,24 @@ router.post("/", async (req, res) => {
 // 4. update collection by id
 router.put("/", async (req, res) => {
   //update json Fashion into database
-  await collection_collection.updateOne(
-    { _id: new ObjectId(req.body._id) }, //condition for update
-    {
-      $set: {
-        //Field for updating
-        name: req.body.name,
-        description: req.body.description,
-        lookbook: req.body.lookbook,
-      },
-    }
-  );
-  var o_id = new ObjectId(req.body._id);
-  const result = await collection_collection.find({ _id: o_id }).toArray();
-  res.send(result[0]);
+  try {
+    await collection_collection.updateOne(
+      { _id: new ObjectId(req.body._id) }, //condition for update
+      {
+        $set: {
+          //Field for updating
+          name: req.body.name,
+          description: req.body.description,
+          lookbook: req.body.lookbook,
+        },
+      }
+    );
+    var o_id = new ObjectId(req.body._id);
+    const result = await collection_collection.find({ _id: o_id }).toArray();
+    res.send(result[0]);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //5. delete collection by id
