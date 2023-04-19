@@ -5,11 +5,12 @@
         },
         "customer_id": "640b187e71d9faa9039ff000",
         "name": "Dinh Van An",
+        "phone": "0328783600",
         "city": "TP. Ho Chi Minh",
         "district": "TP. Thu Duc",
         "address_detail": "90 No.8 street, Linh Xuan",
         "is_default": false,
-        "phone": "0328783600"
+        "date_modified": "2023-04-10T09:00:00.000Z"
     },
     {
         "_id": {
@@ -17,10 +18,11 @@
         },
         "customer_id": "640b187e71d9faa9039ff000",
         "name": "Thanh An",
+        "phone": "0328783600",
         "city": "TP. Ho Chi Minh",
         "district": "TP. Thu Duc",
         "address_detail": "669 Highway 1, Linh Xuan",
         "is_default": true,
-        "phone": "0328783600"
+        "date_modified": "2023-04-11T09:00:00.000Z"
     }
 ]
