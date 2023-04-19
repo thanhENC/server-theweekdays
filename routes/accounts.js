@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { account_collection } = require("../utils/mongo");
+const { account_collection, lookbook_collection } = require("../utils/mongo");
 const { ObjectId } = require("mongodb");
 
 const bcrypt = require("bcryptjs");
@@ -27,14 +27,14 @@ router.post("/signup/", async (req, res) => {
     is_deleted: false,
   });
   try {
-    res.send(account);
-    console.log("Account created successfully");
+    const result = await account_collection.insertOne(account);
+    res.send(result);
   } catch (error) {
     console.log(error);
   }
 });
 
-// 2. log gin
+// 2. login
 router.post("/login/", async (req, res) => {
   try {
     const result = await account_collection.findOne({
@@ -42,9 +42,11 @@ router.post("/login/", async (req, res) => {
     });
     if (!result) {
       return res.status(404).send({ message: "Account not found" });
-    } 
-    else {
-      const passwordIsValid = bcrypt.compareSync(req.body.password,result.password);
+    } else {
+      const passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        result.password
+      );
       if (!passwordIsValid) {
         return res.status(401).send({
           accessToken: null,
@@ -59,15 +61,31 @@ router.post("/login/", async (req, res) => {
 });
 
 // 3. Put update account by id
-// 4. update product by id
-router.put("/update/:id", async (req, res) => {
-  try {
-      const result = await account_collection.updateOne({ _id: req.params.id }, { $set: req.body });
-      res.send(req.body);
-  } catch (error) {
-      console.log(error);
-  }
-})
+router.put("/", async (req, res) => {
+  //update json Fashion into database
+  await account_collection.updateOne(
+    { _id: new ObjectId(req.body._id) }, //condition for update
+    {
+      $set: {
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        password: bcrypt.hashSync(req.body.password, 8),
+        type: {
+          admin: req.body.type.admin,
+          role: req.body.type.role,
+        },
+        register_date: new Date(),
+        last_active: new Date(),
+        is_deleted: req.body.is_deleted,
+      },
+    }
+  );
+  //send Fahsion after updating
+  var o_id = new ObjectId(req.body._id);
+  const result = await account_collection.find({ _id: o_id }).toArray();
+  res.send(result[0]);
+});
 
 // ===================================================
 
