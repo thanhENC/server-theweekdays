@@ -31,7 +31,7 @@ app.listen(port, () => {
 // const { MongoClient, ObjectId } = require('mongodb');
 
 // // MongoDB Atlas
-// const uri = "mongodb+srv://thanhenc:9fdWvVT0yJTPV3n8@k20411-web2.3xcbrui.mongodb.net/test"
+// const uri = URI_MONGODB;
 // const client = new MongoClient(uri);
 
 // client.connect(err => {
@@ -46,13 +46,34 @@ app.get("/api", (req, res) => {
     res.send("This Web server is processed for MongoDB")
 })
 
-// I. Product: /v1/products
-const productRoute = require("./routes/product");
-app.use("/v1/products", productRoute);
+// I. Accounts: /accounts/
+const accountsRoute = require("./routes/accounts");
+app.use("/accounts", accountsRoute);
 
 // II. Address list: /v1/address
 const addressRoute = require("./routes/address");
 app.use("/v1/address", addressRoute);
+
+// III. Category: /v1/category
+const categoryRoute = require("./routes/category");
+app.use("/v1/category", categoryRoute);
+
+// IV. Coupon: /v1/coupon
+const couponRoute = require("./routes/coupon");
+app.use("/v1/coupon", couponRoute);
+
+// V. Customer: /v1/customer
+const customerRoute = require("./routes/customer");
+app.use("/v1/customer", customerRoute);
+
+// VI. Order: /v1/order
+const orderRoute = require("./routes/order");
+app.use("/v1/order", orderRoute);
+
+// VII. Product: /v1/products
+const productRoute = require("./routes/product");
+app.use("/v1/products", productRoute);
+
 
 // Continue with other routes...........
 

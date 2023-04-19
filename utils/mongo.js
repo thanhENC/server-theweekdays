@@ -1,7 +1,8 @@
-const { MongoClient, ObjectId } = require("mongodb");
+const { MongoClient, ObjectId } = require('mongodb');
+const { URI_MONGODB } = require("../env");
 
 // // MongoDB Atlas
-// const uri = "mongodb+srv://thanhenc:9fdWvVT0yJTPV3n8@k20411-web2.3xcbrui.mongodb.net/test"
+// const uri = URI_MONGODB;
 // const client = new MongoClient(uri);
 
 // client.connect(err => {
@@ -11,8 +12,8 @@ const { MongoClient, ObjectId } = require("mongodb");
 //     client.close();
 // });
 
-const uri =
-  "mongodb+srv://thanhenc:9fdWvVT0yJTPV3n8@k20411-web2.3xcbrui.mongodb.net/test";
+const uri = URI_MONGODB;
+
 // async function mongoconnect(databasename, uri=uri) {
 //     const client = await MongoClient.connect(uri, { useUnifiedTopology: true });
 //     return client.db(databasename);
