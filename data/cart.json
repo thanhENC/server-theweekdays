@@ -1,0 +1,35 @@
+[
+    {
+        "_id": {
+            "$oid": "5a5b5b5b5b5b5b5b5b5b5b5b"
+        },
+        "customer_id": "640b187e71d9faa9039ff000",
+        "products": [
+            {
+                "product_id": "JGM10",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "5a5b5b5b5b5b5b5b5b5b5b5c"
+        },
+        "customer_id": "640b187e71d9faa9039ff001",
+        "products": [
+            {
+                "product_id": "JGM10",
+                "quantity": 3
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "5a5b5b5b5b5b5b5b5b5b5b5d"
+        },
+        "customer_id": "640b187e71d9faa9039ff002",
+        "products": [
+            
+        ]
+    }
+]

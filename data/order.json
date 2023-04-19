@@ -1,0 +1,114 @@
+[
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff710"
+        },
+        "date": "2023-03-20T13:32:16.189Z",
+        "total": 380000,
+        "customer_id": "640b187e71d9faa9039ff000",
+        "payment": {
+            "method": "MoMo",
+            "status": "Done"
+        },
+        "delivery": {
+            "method": "ViettelPost",
+            "price": 20000,
+            "status": "Done"
+        },
+        "receiver_info": {
+            "name": "Dinh Van An",
+            "city": "TP. Ho Chi Minh",
+            "district": "TP. Thu Duc",
+            "address_detail": "90 No.8 street, Linh Xuan",
+            "phone": "0328783600"
+        },
+        "products": [
+            {
+                "product_id": "JFM10",
+                "quantity": 2,
+                "price": 200000,
+                "original_price": 250000,
+                "sub_total": 400000
+            }
+        ],
+        "discount": {
+            "code": "SUMMERSALE",
+            "value": 40000
+        },
+        "status": "Delivered",
+        "progress": [
+            {
+                "date": "2023-03-20T13:32:16.189Z",
+                "status": "Pending"
+            },
+            {
+                "date": "2023-03-20T15:32:16.189Z",
+                "status": "Processing"
+            },
+            {
+                "date": "2023-03-21T06:30:16.189Z",
+                "status": "Shipping"
+            },
+            {
+                "date": "2023-03-21T12:00:16.189Z",
+                "status": "Delivered"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "640b187e71d9faa9039ff711"
+        },
+        "date": "2023-03-20T13:32:16.189Z",
+        "total": 380000,
+        "customer_id": "640b187e71d9faa9039ff099",
+        "payment": {
+            "method": "ZaloPay",
+            "status": "Done"
+        },
+        "delivery": {
+            "method": "Giao Hàng Nhanh",
+            "price": 20000,
+            "status": "Done"
+        },
+        "receiver_info": {
+            "name": "Đinh Hoàn Hảo",
+            "city": "TP. Ho Chi Minh",
+            "district": "TP. Thu Duc",
+            "address_detail": "90 No.8 street, Linh Xuan",
+            "phone": "0328783600"
+        },
+        "products": [
+            {
+                "product_id": "JFM10",
+                "quantity": 2,
+                "price": 200000,
+                "original_price": 250000,
+                "sub_total": 400000
+            }
+        ],
+        "discount": {
+            "code": "SUMMERSALE",
+            "value": 40000
+        },
+        "status": "Delivered",
+        "progress": [
+            {
+                "date": "2023-03-20T13:32:16.189Z",
+                "status": "Pending"
+            },
+            {
+                "date": "2023-03-20T15:32:16.189Z",
+                "status": "Processing"
+            },
+            {
+                "date": "2023-03-21T06:30:16.189Z",
+                "status": "Shipping"
+            },
+            {
+                "date": "2023-03-21T12:00:16.189Z",
+                "status": "Delivered"
+            }
+        ]
+    }
+]
