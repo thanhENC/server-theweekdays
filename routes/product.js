@@ -31,6 +31,12 @@ router.get("/", async (req, res) => {
 
     if (req.query.category) {
       temp = temp.filter((product) => {
+        return product.category = req.query.category;
+      });
+    }
+
+    if (req.query.category) {
+      temp = temp.filter((product) => {
         return product.category == req.query.category;
       });
     }
