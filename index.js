@@ -48,7 +48,7 @@ app.get("/api", (req, res) => {
 
 // I. Accounts: /accounts/
 const accountsRoute = require("./routes/accounts");
-app.use("/accounts", accountsRoute);
+app.use("/v1/account", accountsRoute);
 
 // II. Address list: /v1/address
 const addressRoute = require("./routes/address");
@@ -57,6 +57,14 @@ app.use("/v1/address", addressRoute);
 // III. Category: /v1/category
 const categoryRoute = require("./routes/category");
 app.use("/v1/category", categoryRoute);
+
+// COLLECTION: /v1/collection
+const collectionRoute = require("./routes/collection");
+app.use("/v1/collection", collectionRoute);
+
+// LOOKBOOK: /v1/lookbook
+const lookbookRoute = require("./routes/lookbook");
+app.use("/v1/lookbook", lookbookRoute);
 
 // IV. Coupon: /v1/coupon
 const couponRoute = require("./routes/coupon");
