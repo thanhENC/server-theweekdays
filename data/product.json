@@ -1,22 +1,49 @@
 {
-    "_id": {
-      "$oid": "640b187e71d9faa9039ff97d"
+  "_id": {
+    "$oid": "640b187e71d9faa9039ff97d"
+  },
+  "product_id": "JGM10",
+  "name": "Quần Jogger Tối Giản M10",
+  "excerpt": "Quần Jogger Tối Giản M10",
+  "description": "Quần Jogger Tối Giản M10Chất liệu: COTTON DOUBLE FACE- Vải sợi Cotton được dệt theo \"DOUBLE-FACE\" có cấu trúc 2 bề mặt giống nhau, có thể sử dụng được cả 2 mặt vải .Thành phần: 87% Cotton 13% Polyester- Co giãn- Độ bền cao- Thoáng Khí- Nhanh khô- Thấm hút+ Thêu logo ",
+  "price": 200000,
+  "original_price": 250000,
+  "on_sale": true,
+  "rating": 4.5,
+  "in_stock": true,
+  "min_qty": 0,
+  "max_qty": 5,
+  "image": [
+    "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
+    "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
+    "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
+  ],
+  "category": "640b187e71d9faa9039ff960",
+  "variants": [
+    {
+      "name": "S",
+      "in_stock": true,
+      "available_quantity": 100
     },
-    "product_id": "JGM10",
-    "name": "Quần Jogger Tối Giản M10",
-    "excerpt": "Quần Jogger Tối Giản M10",
-    "description": "Quần Jogger Tối Giản M10Chất liệu: COTTON DOUBLE FACE- Vải sợi Cotton được dệt theo \"DOUBLE-FACE\" có cấu trúc 2 bề mặt giống nhau, có thể sử dụng được cả 2 mặt vải .Thành phần: 87% Cotton 13% Polyester- Co giãn- Độ bền cao- Thoáng Khí- Nhanh khô- Thấm hút+ Thêu logo ",
-    "price": 200000,
-    "original_price": 250000,
-    "on_sale": true,
-    "rating": 4.5,
-    "in_stock": true,
-    "min_qty": 0,
-    "max_qty": 5,
-    "image": [
-      "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
-      "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
-      "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
-    ],
-    "category": "640b187e71d9faa9039ff960"
-  }
+    {
+      "name": "M",
+      "in_stock": true,
+      "available_quantity": 100
+    },
+    {
+      "name": "L",
+      "in_stock": true,
+      "available_quantity": 100
+    },
+    {
+      "name": "XL",
+      "in_stock": false,
+      "available_quantity": 0
+    },
+    {
+      "name": "XXL",
+      "in_stock": false,
+      "available_quantity": 0
+    }
+  ]
+}
