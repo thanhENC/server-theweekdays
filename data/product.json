@@ -1,6 +1,6 @@
 {
     "_id": {
-        "$oid": "640b187e71d9faa9039ff97d"
+      "$oid": "640b187e71d9faa9039ff97d"
     },
     "product_id": "JGM10",
     "name": "Quần Jogger Tối Giản M10",
@@ -14,16 +14,9 @@
     "min_qty": 0,
     "max_qty": 5,
     "image": [
-        "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
-        "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
-        "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
+      "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
+      "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti",
+      "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAuYAAAIDCAYAAABIENti"
     ],
-    "variants": [
-        "640b187e71d9faa9039ff962",
-        "640b187e71d9faa9039ff963",
-        "640b187e71d9faa9039ff964",
-        "640b187e71d9faa9039ff965",
-        "640b187e71d9faa9039ff966"
-    ],
-    "categories": "640b187e71d9faa9039ff960"
-}
+    "category": "640b187e71d9faa9039ff960"
+  }

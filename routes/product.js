@@ -5,6 +5,8 @@ const router = express.Router();
 const { product_collection, variant_collection, category_collection } = require("../utils/mongo");
 const { ObjectId } = require("mongodb");
 
+const cors = require("cors");
+
 // =================SETTING UP ROUTES=================
 // prefix: /v1/products
 
@@ -59,7 +61,7 @@ router.get("/", async (req, res) => {
         in_stock: product.in_stock,
       };
     });
-    res.send(result);
+    res.status(200).send(result);
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -87,10 +89,28 @@ router.get("/:id", async (req, res) => {
 });
 
 // 3. post new product
-router.post("/", async (req, res) => {
+router.post("/", cors(), async (req, res) => {
   try {
-    const result = await collection.insertOne(req.body);
-    res.send(result);
+    let new_product = {
+      product_id: req.body.product_id,
+      name: req.body.name,
+      excerpt: req.body.excerpt,
+      description: req.body.description,
+      price: req.body.price,
+      original_price: req.body.original_price,
+      on_sale: req.body.on_sale,
+      rating: req.body.rating,
+      in_stock: req.body.in_stock,
+      min_qty: req.body.min_qty,
+      max_qty: req.body.max_qty,
+      image: req.body.image,
+      category: req.body.category
+    }
+    const result = await product_collection.insertOne(new_product);
+    res.status(201).send({
+      message: "success",
+      content: result
+    });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -99,7 +119,7 @@ router.post("/", async (req, res) => {
 // 4. update product by id
 router.put("/:id", async (req, res) => {
   try {
-    const result = await collection.updateOne(
+    const result = await product_collection.updateOne(
       { _id: new ObjectId(req.params.id) },
       {
         $set: {
@@ -118,16 +138,16 @@ router.put("/:id", async (req, res) => {
         }
       }
     );
-    res.send(result);
+    res.status(200).send({ message: "success", content: result });
   } catch (error) {
-    res.send({ message: "Failed" })
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
 // 5. delete product by id
 router.delete("/:id", async (req, res) => {
   try {
-    const result = await collection.deleteOne({ _id: req.params.id });
+    const result = await product_collection.deleteOne({ _id: new ObjectId(req.params.id) });
     res.send(result);
   } catch (error) {
     console.log(error);
