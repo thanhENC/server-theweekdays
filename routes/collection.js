@@ -7,12 +7,12 @@ const { ObjectId } = require("mongodb");
 const { Collection } = require("mongoose");
 
 // =================SETTING UP ROUTES=================
-// prefix: /v1/lookbook
+// prefix: /v1/collection
 
 // 1. get all collection
 router.get("/", async (req, res) => {
   try {
-    // get all products from database and send specific fields
+    // get all collections from database and send specific fields
     let result = await collection_collection.find({}).toArray();
     res.send(result);
   } catch (error) {
@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
     const result = await collection_collection.findOne({ _id: oid });
     res.send(result);
   } catch (error) {
-    console.log(error);
+    res.send({ message: "Collection not found" });
   }
 });
 
@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
     const result = await collection_collection.insertOne(req.body);
     res.send(result);
   } catch (error) {
-    console.log(error);
+    res.send({ message: "Failed" });
   }
 });
 
@@ -60,16 +60,20 @@ router.put("/", async (req, res) => {
     const result = await collection_collection.find({ _id: o_id }).toArray();
     res.send(result[0]);
   } catch (error) {
-    console.log(error);
+    res.send({ message: "Failed" })
   }
 });
 
 //5. delete collection by id
 router.delete("/:id", async (req, res) => {
-  var o_id = new ObjectId(req.params["id"]);
-  const result = await collection_collection.find({ _id: o_id }).toArray();
-  await collection_collection.deleteOne({ _id: o_id });
-  res.send(result[0]);
+  try {
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await collection_collection.find({ _id: o_id }).toArray();
+    await collection_collection.deleteOne({ _id: o_id });
+    res.send(result[0]);
+  } catch (error) {
+    res.send({ message: "Failed" })
+  }
 });
 
 // ===================================================
