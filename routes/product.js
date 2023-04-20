@@ -88,7 +88,7 @@ router.get("/:id", async (req, res) => {
     });
     let category = await category_collection.findOne({ _id: new ObjectId(result.category) });
     result.category = category.name;
-    res.send(result);
+    res.status(200).send(result);
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -154,9 +154,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const result = await product_collection.deleteOne({ _id: new ObjectId(req.params.id) });
-    res.send(result);
+    res.status(200).send({ message: "success", content: result });
   } catch (error) {
-    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
