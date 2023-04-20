@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { product_collection } = require("../utils/mongo");
+const { product_collection, variant_collection, category_collection } = require("../utils/mongo");
 const { ObjectId } = require("mongodb");
 
 // =================SETTING UP ROUTES=================
@@ -61,7 +61,7 @@ router.get("/", async (req, res) => {
     });
     res.send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
@@ -69,10 +69,20 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     oid = new ObjectId(req.params.id);
-    const result = await product_collection.findOne({ _id: oid });
+    let result = await product_collection.findOne({ _id: oid });
+    let variants = await variant_collection.find({ product_id: result.product_id }).toArray();
+    result.variants = variants.map((variant) => {
+      return {
+        name: variant.name,
+        in_stock: variant.in_stock,
+        available_quantity: variant.available_quantity
+      };
+    });
+    let category = await category_collection.findOne({ _id: new ObjectId(result.category) });
+    result.category = category.name;
     res.send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
@@ -82,7 +92,7 @@ router.post("/", async (req, res) => {
     const result = await collection.insertOne(req.body);
     res.send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
@@ -90,12 +100,27 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const result = await collection.updateOne(
-      { _id: req.params.id },
-      { $set: req.body }
+      { _id: new ObjectId(req.params.id) },
+      {
+        $set: {
+          name: req.body.name,
+          excerpt: req.body.excerpt,
+          description: req.body.description,
+          price: req.body.price,
+          original_price: req.body.original_price,
+          on_sale: req.body.on_sale,
+          rating: req.body.rating,
+          in_stock: req.body.in_stock,
+          min_qty: req.body.min_qty,
+          max_qty: req.body.max_qty,
+          image: req.body.image,
+          category: req.body.category
+        }
+      }
     );
     res.send(result);
   } catch (error) {
-    console.log(error);
+    res.send({ message: "Failed" })
   }
 });
 
