@@ -78,14 +78,14 @@ router.get("/:id", async (req, res) => {
   try {
     oid = new ObjectId(req.params.id);
     let result = await product_collection.findOne({ _id: oid });
-    let variants = await variant_collection.find({ product_id: result.product_id }).toArray();
-    result.variants = variants.map((variant) => {
-      return {
-        name: variant.name,
-        in_stock: variant.in_stock,
-        available_quantity: variant.available_quantity
-      };
-    });
+    // let variants = await variant_collection.find({ product_id: result.product_id }).toArray();
+    // result.variants = variants.map((variant) => {
+    //   return {
+    //     name: variant.name,
+    //     in_stock: variant.in_stock,
+    //     available_quantity: variant.available_quantity
+    //   };
+    // });
     let category = await category_collection.findOne({ _id: new ObjectId(result.category) });
     result.category = category.name;
     res.status(200).send(result);
