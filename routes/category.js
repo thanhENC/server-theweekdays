@@ -89,16 +89,20 @@ router.put("/updatecount/:cate_id", cors(), async (req, res) => {
 
 // 5. delete category by id
 router.delete("/:cate_id", async (req, res) => {
-    try {        
+    try {
         if ((await product_collection.find({ category: req.params.cate_id }).toArray()).length > 0) {
             res.status(500).send({ message: "Failed to delete, must remove all products out of this category first!" });
         } else {
             const oid = new ObjectId(req.params.cate_id);
-            const result = await category_collection.deleteOne({ _id: oid });
-            res.send(result);
+            let resultDeleted = await category_collection.findOneAndDelete({ _id: oid, can_delete: true });
+            if (resultDeleted.value == null) {
+                res.status(500).send({ message: "Failed to delete, the category is protected" });
+            } else {
+                res.send(resultDeleted);
+            }
         }
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Failed" });
     }
 })
 
