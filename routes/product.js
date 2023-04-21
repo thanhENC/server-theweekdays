@@ -110,7 +110,8 @@ router.post("/", cors(), async (req, res) => {
       min_qty: req.body.min_qty,
       max_qty: req.body.max_qty,
       image: req.body.image,
-      category: req.body.category
+      category: req.body.category,
+      variants: req.body.variants
     }
     const result = await product_collection.insertOne(new_product);
     res.status(201).send({
@@ -140,7 +141,8 @@ router.put("/:id", async (req, res) => {
           min_qty: req.body.min_qty,
           max_qty: req.body.max_qty,
           image: req.body.image,
-          category: req.body.category
+          category: req.body.category,
+          variants: req.body.variants
         }
       }
     );
