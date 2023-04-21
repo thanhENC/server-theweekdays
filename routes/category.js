@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
         const result = await category_collection.find({}).sort({ date_modified: -1 }).toArray();
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" })
+        res.status(500).send({ message: "Failed" });
     }
 })
 
@@ -28,7 +28,7 @@ router.get('/:cate_id', async (req, res) => {
         const result = await category_collection.findOne({ _id: oid });
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" })
+        res.status(500).send({ message: "Failed" });
     }
 })
 
@@ -36,13 +36,14 @@ router.get('/:cate_id', async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         req.body.count = 0;
+        req.body.can_delete = true;
         req.body.date_added = new Date().toISOString();
         req.body.date_modified = new Date().toISOString();
 
         const result = await category_collection.insertOne(req.body);
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Failed" });
     }
 })
 
@@ -62,7 +63,7 @@ router.put("/:cate_id", cors(), async (req, res) => {
         )
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Failed" });
     }
 })
 
@@ -82,16 +83,20 @@ router.put("/updatecount/:cate_id", cors(), async (req, res) => {
         )
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Failed" });
     }
 })
 
 // 5. delete category by id
 router.delete("/:cate_id", async (req, res) => {
-    try {
-        const oid = new ObjectId(req.params.cate_id);
-        const result = await category_collection.deleteOne({ _id: oid });
-        res.send(result);
+    try {        
+        if ((await product_collection.find({ category: req.params.cate_id }).toArray()).length > 0) {
+            res.status(500).send({ message: "Failed to delete, must remove all products out of this category first!" });
+        } else {
+            const oid = new ObjectId(req.params.cate_id);
+            const result = await category_collection.deleteOne({ _id: oid });
+            res.send(result);
+        }
     } catch (error) {
         res.send({ message: "failed" });
     }
