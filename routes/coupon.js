@@ -65,24 +65,28 @@ router.put("/:id", async (req, res) => {
         const {
             coupon_code,
             title,
-            description,
             is_percentage,
             value,
             is_active,
             valid_from,
             valid_to,
-            membership
+            membership,
+            quantity,
+            min_order,
+            max_discount
         } = req.body;
 
         if (
             !coupon_code ||
             !title ||
-            !description ||
             is_percentage === undefined ||
             !value ||
             is_active === undefined ||
             !valid_from ||
             !valid_to ||
+            !quantity ||
+            !min_order ||
+            !max_discount ||
             !membership
         ) {
             return res
@@ -96,12 +100,12 @@ router.put("/:id", async (req, res) => {
                 $set: {
                     coupon_code,
                     title,
-                    description,
                     is_percentage,
                     value,
                     is_active,
                     valid_from,
                     valid_to,
+                    quantity,
                     membership
                 },
             }
@@ -123,7 +127,6 @@ router.post("/", async (req, res) => {
         const {
             coupon_code,
             title,
-            description,
             is_percentage,
             value,
             is_active,
@@ -139,13 +142,15 @@ router.post("/", async (req, res) => {
         if (
             !coupon_code ||
             !title ||
-            !description ||
             is_percentage === undefined ||
             !value ||
             is_active === undefined ||
             !valid_from ||
             !valid_to ||
-            !membership
+            !membership ||
+            !quantity ||
+            !min_order ||
+            !max_discount
         ) {
             return res
                 .status(400)
@@ -155,7 +160,6 @@ router.post("/", async (req, res) => {
         const coupon = {
             coupon_code,
             title,
-            description,
             is_percentage,
             value,
             is_active,
@@ -169,10 +173,9 @@ router.post("/", async (req, res) => {
         };
 
         const result = await coupon_collection.insertOne(coupon);
-        console.log(result);
         return res
             .status(200)
-            .send({ message: "Success" });
+            .send(result);
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: "Internal server error" });
