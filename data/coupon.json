@@ -40,5 +40,47 @@
         },
         "min_order": 500000,
         "max_discount": 100000
-    }
+    },
+    {
+        "_id": {
+          "$oid": "5f1b3b1b7c9d1c0b1c1c1c2d"
+        },
+        "coupon_code": "30T41T6",
+        "title": "Giảm 100.000đ Mừng Đại Lễ",
+        "description": "Giảm 100.000đ cho đơn hàng từ 500.000đ trở lên chào mừng đại lễ 30/4 - 1/5",
+        "is_percentage": false,
+        "value": 100000,
+        "is_active": false,
+        "created_at": "2023-04-01T10:00:00.000Z",
+        "valid_from": "2023-04-29",
+        "valid_to": "2023-05-02",
+        "membership": 200,
+        "quantity": {
+          "all": 100,
+          "used": 20
+        },
+        "min_order": 500000,
+        "max_discount": 100000
+      },
+      {
+        "_id": {
+          "$oid": "5f1b3b1b7c9d1c0b1c1c1c3c"
+        },
+        "coupon_code": "30T41T7",
+        "title": "Giảm 100.000đ Mừng Đại Lễ",
+        "description": "Giảm 100.000đ cho đơn hàng từ 500.000đ trở lên chào mừng đại lễ 30/4 - 1/5",
+        "is_percentage": true,
+        "value": 10,
+        "is_active": true,
+        "created_at": "2023-04-01T10:00:00.000Z",
+        "valid_from": "2023-04-29",
+        "valid_to": "2023-05-02",
+        "membership": 200,
+        "quantity": {
+          "all": 100,
+          "used": 20
+        },
+        "min_order": 500000,
+        "max_discount": 100000
+      }
 ]
