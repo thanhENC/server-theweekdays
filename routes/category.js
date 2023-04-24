@@ -6,8 +6,6 @@ const { category_collection, product_collection } = require('../utils/mongo');
 
 const { ObjectId } = require('mongodb');
 
-const cors = require("cors");
-
 // =================SETTING UP ROUTES=================
 // prefix: /v1/category
 
@@ -48,7 +46,7 @@ router.post("/", async (req, res) => {
 })
 
 // 4. update a category
-router.put("/:cate_id", cors(), async (req, res) => {
+router.put("/:cate_id", async (req, res) => {
     try {
         const result = await category_collection.updateOne(
             { _id: new ObjectId(req.params.cate_id) },
@@ -68,7 +66,7 @@ router.put("/:cate_id", cors(), async (req, res) => {
 })
 
 // 5. update only count
-router.put("/updatecount/:cate_id", cors(), async (req, res) => {
+router.put("/updatecount/:cate_id", async (req, res) => {
     try {
         number_of_products = (await product_collection.find({ categories: req.params.cate_id }).toArray()).length;
 
