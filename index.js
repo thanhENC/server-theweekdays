@@ -21,7 +21,7 @@ app.use(express.urlencoded({ limit: '20mb' }));
 // app.use(express.json());
 
 const cors = require("cors");
-app.use(cors())
+app.use(cors());
 
 app.listen(port, () => {
     console.log(`Server-Fashion listening on port ${port}`)

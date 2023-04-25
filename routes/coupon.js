@@ -80,14 +80,14 @@ router.put("/:id", async (req, res) => {
             !coupon_code ||
             !title ||
             is_percentage === undefined ||
-            !value ||
+            value < 0 ||
             is_active === undefined ||
             !valid_from ||
             !valid_to ||
-            !quantity ||
-            !min_order ||
-            !max_discount ||
-            !membership
+            membership < 0 ||
+            quantity <= 0 ||
+            min_order < 0 ||
+            max_discount <0
         ) {
             return res
                 .status(400)
@@ -145,14 +145,14 @@ router.post("/", async (req, res) => {
             !coupon_code ||
             !title ||
             is_percentage === undefined ||
-            !value ||
+            value < 0 ||
             is_active === undefined ||
             !valid_from ||
             !valid_to ||
             membership < 0 ||
-            !quantity ||
-            !min_order ||
-            !max_discount
+            quantity <= 0 ||
+            min_order < 0 ||
+            max_discount <0
         ) {
             return res
                 .status(400)
