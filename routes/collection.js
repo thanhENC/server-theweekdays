@@ -53,6 +53,7 @@ router.put("/", async (req, res) => {
           name: req.body.name,
           description: req.body.description,
           lookbook: req.body.lookbook,
+          image: req.body.image,
           products: req.body.products,
           modifiedDate: new Date(),
           videoId: req.body.videoId,
