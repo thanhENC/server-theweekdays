@@ -147,7 +147,7 @@ router.post("/", async (req, res) => {
             is_active === undefined ||
             !valid_from ||
             !valid_to ||
-            !membership ||
+            membership < 0 ||
             !quantity ||
             !min_order ||
             !max_discount
