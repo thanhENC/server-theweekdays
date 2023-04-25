@@ -106,7 +106,9 @@ router.put("/:id", async (req, res) => {
                     valid_from,
                     valid_to,
                     quantity,
-                    membership
+                    membership,
+                    min_order,
+                    max_discount
                 },
             }
         );
