@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
     }
 
     if(req.query.page) {
-      temp = temp.slice((req.query.page - 1) * 2, req.query.page * 2);
+      temp = temp.slice((req.query.page - 1) * 10, req.query.page * 10);
     }
 
     if (req.query.search) {
