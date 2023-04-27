@@ -14,6 +14,9 @@ router.get("/", async (req, res) => {
   try {
     // get all collections from database and send specific fields
     let result = await collection_collection.find({}).toArray();
+    if (req.query.page) {
+      result = result.slice((req.query.page - 1) * 10, req.query.page * 10);
+    }
     res.send(result);
   } catch (error) {
     console.log(error);
