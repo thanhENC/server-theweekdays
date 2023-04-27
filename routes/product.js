@@ -29,16 +29,8 @@ router.get("/", async (req, res) => {
       });
     }
 
-    if (req.query.category) {
-      temp = temp.filter((product) => {
-        return product.category = req.query.category;
-      });
-    }
-
-    if (req.query.category) {
-      temp = temp.filter((product) => {
-        return product.category == req.query.category;
-      });
+    if(req.query.page) {
+      temp = temp.slice((req.query.page - 1) * 2, req.query.page * 2);
     }
 
     if (req.query.search) {
