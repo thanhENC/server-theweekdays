@@ -11,6 +11,8 @@ const port = 4000;
 const morgan = require("morgan")
 app.use(morgan("combined"))
 
+app.set('trust proxy', true);
+
 // payload limit 20mb
 const bodyParser = require("body-parser")
 app.use(bodyParser.json({ limit: '20mb' }));
@@ -22,6 +24,42 @@ app.use(express.urlencoded({ limit: '20mb' }));
 
 const cors = require("cors");
 app.use(cors());
+
+// ================ COOKIE ===================
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+// ================ SESSION ===================
+var session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const { URI_ACCOUNT, ACCOUNT_DB, SECRET_SESSION } = require("./env");
+
+const store = new MongoDBStore({
+    uri: URI_ACCOUNT,
+    databaseName: ACCOUNT_DB,
+    collection: 'session',
+}, function (error) {
+    // Should have gotten an error
+    console.log(error);
+});
+
+// Catch errors
+store.on('error', function (error) {
+    console.log(error);
+});
+
+const { hasSubscribers } = require('diagnostics_channel');
+app.use(session({
+    secret: SECRET_SESSION,
+    resave: true,
+    saveUninitialized: true,
+    store: store,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30 }, // 30 days
+}));;
+
+// init data for session
+var { logMiddleware } = require('./routes/authMiddleware');
+app.use(logMiddleware);
 
 app.listen(port, () => {
     console.log(`Server-Fashion listening on port ${port}`)
