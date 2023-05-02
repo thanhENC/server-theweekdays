@@ -14,7 +14,10 @@ const { default_malecustomer_image, default_femalecustomer_image } = require('..
 // 1. get list of all customers
 router.get("/", async (req, res) => {
     try {
-        const result = await customer_collection.find({}).toArray();
+        let result = await customer_collection.find({}).toArray();
+        if(req.query.page) {
+            result = result.slice((req.query.page - 1) * 10, req.query.page * 10);
+          }
         res.send(result);
     } catch (error) {
         console.log(error);
