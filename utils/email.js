@@ -175,10 +175,10 @@ function welcomeEmail(username, password) {
                                                                         <tr>
                                                                             <td
                                                                                 style="vertical-align: middle; text-align: center; padding-top: 20px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px;">
-                                                                                <img align="center" class="icon" height="64"
+                                                                                <img align="center" class="icon" height="80"
                                                                                     src="https://i.pinimg.com/564x/4f/03/2e/4f032e57c19780eac680c3ca6e7d2019.jpg"
                                                                                     style="display: block; height: auto; margin: 0 auto; border: 0;"
-                                                                                    width="143" /></td>
+                                                                                    width="80" /></td>
                                                                         </tr>
                                                                     </table>
                                                                 </td>
@@ -204,7 +204,7 @@ function welcomeEmail(username, password) {
                                                                                 style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 25.5px;">
                                                                                 <span class="tinyMce-placeholder"
                                                                                     style="font-size:17px;">${new
-                                                                                    Date().toLocaleDateString('en-ZA')}</span>
+                                                                                    Date().toLocaleDateString('vi-VN')}</span>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -1262,18 +1262,18 @@ function welcomeEmail(username, password) {
                                                                             width="108px">
                                                                             <tr>
                                                                                 <td style="padding:0 2px 0 2px;"><a
-                                                                                        href="https://www.facebook.com/"
-                                                                                        target="_blank"><img alt="Facebook"
+                                                                                        href="https://www.youtube.com/"
+                                                                                        target="_blank"><img alt="youtube"
                                                                                             height="32"
-                                                                                            src="https://bee.img.musvc4.net/static/74987/images/social/circle-dark-gray/facebook@2x.png"
+                                                                                            src="https://todoist.doist-emails.com/_next/static/images/youtube@2x_385831e3cd7a35a98971a4b9cf04b134.png"
                                                                                             style="display: block; height: auto; border: 0;"
-                                                                                            title="facebook"
+                                                                                            title="youtube"
                                                                                             width="32" /></a></td>
                                                                                 <td style="padding:0 2px 0 2px;"><a
                                                                                         href="https://www.instagram.com/"
                                                                                         target="_blank"><img alt="Twitter"
                                                                                             height="32"
-                                                                                            src="https://bee.img.musvc4.net/static/74987/images/social/circle-dark-gray/instagram@2x.png"
+                                                                                            src="https://todoist.doist-emails.com/_next/static/images/linkedin@2x_c0f1a7074985df3308f3c6298c65e739.png"
                                                                                             style="display: block; height: auto; border: 0;"
                                                                                             title="instagram"
                                                                                             width="32" /></a></td>
@@ -1281,7 +1281,7 @@ function welcomeEmail(username, password) {
                                                                                         href="https://www.linkedin.com/"
                                                                                         target="_blank"><img alt="Linkedin"
                                                                                             height="32"
-                                                                                            src="https://bee.img.musvc4.net/static/74987/images/social/circle-dark-gray/linkedin@2x.png"
+                                                                                            src="https://todoist.doist-emails.com/_next/static/images/linkedin@2x_c0f1a7074985df3308f3c6298c65e739.png"
                                                                                             style="display: block; height: auto; border: 0;"
                                                                                             title="linkedin"
                                                                                             width="32" /></a></td>
