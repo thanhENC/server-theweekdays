@@ -1,5 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb');
-const { URI_MONGODB } = require("../env");
+const { URI_MONGODB, URI_ACCOUNT } = require("../env");
 
 // // MongoDB Atlas
 // const uri = URI_MONGODB;
@@ -12,20 +12,19 @@ const { URI_MONGODB } = require("../env");
 //     client.close();
 // });
 
-const uri = URI_MONGODB;
-
 // async function mongoconnect(databasename, uri=uri) {
 //     const client = await MongoClient.connect(uri, { useUnifiedTopology: true });
 //     return client.db(databasename);
 // }
 
-function mongoconnect(databasename) {
-  const client = new MongoClient(uri);
+function mongoconnect(databasename, uri) {
+  let client = new MongoClient(uri);
   client.connect();
   return client.db(databasename);
 }
 
-const database = mongoconnect("theweekdays");
+// DB Fashion
+const database = mongoconnect("theweekdays", URI_MONGODB);
 const address_collection = database.collection("address_list");
 const cart_collection = database.collection("cart");
 const category_collection = database.collection("category");
@@ -41,9 +40,16 @@ const wishlist_collection = database.collection("wishlist");
 const lookbook_collection = database.collection("lookbook");
 const collection_collection = database.collection("collection_collection");
 
+// DB Account
+const account_db = mongoconnect("AccountDB", URI_ACCOUNT);
+const adminaccount_collection = account_db.collection("adminaccount");
+const customeraccount_collection = account_db.collection("customeraccount");
+const session_collection = account_db.collection("session");
+const unsafe_collection = account_db.collection("unsafe");
+
 module.exports = {
   mongoconnect,
-  database,
+  database, account_db, adminaccount_collection, customeraccount_collection, session_collection, unsafe_collection,
   address_collection,
   cart_collection,
   category_collection,
