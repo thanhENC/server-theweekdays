@@ -84,6 +84,16 @@ app.get("/api", (req, res) => {
     res.send("This Web server is processed for MongoDB")
 })
 
+// get ip address
+app.get("/v1/ip", (req, res) => {
+    try {
+        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        res.send(ip);
+    } catch (error) {
+        res.status(500).send({ err: 'something wrong '+ error });
+    }
+})
+
 // I. Accounts: /accounts/
 const accountsRoute = require("./routes/accounts");
 app.use("/v1/account", accountsRoute);
@@ -119,7 +129,6 @@ app.use("/v1/order", orderRoute);
 // VII. Product: /v1/products
 const productRoute = require("./routes/product");
 app.use("/v1/products", productRoute);
-
 
 // Continue with other routes...........
 

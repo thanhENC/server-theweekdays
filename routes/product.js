@@ -5,6 +5,8 @@ const router = express.Router();
 const { product_collection, variant_collection, category_collection } = require("../utils/mongo");
 const { ObjectId } = require("mongodb");
 
+const { allowAccess, logSession } = require("./authMiddleware");
+
 const cors = require("cors");
 
 // =================SETTING UP ROUTES=================
@@ -29,7 +31,7 @@ router.get("/", async (req, res) => {
       });
     }
 
-    if(req.query.page) {
+    if (req.query.page) {
       temp = temp.slice((req.query.page - 1) * 10, req.query.page * 10);
     }
 
@@ -59,8 +61,12 @@ router.get("/", async (req, res) => {
         in_stock: product.in_stock,
       };
     });
+    // log request
+    logSession(req, res, 200);
     res.status(200).send(result);
   } catch (error) {
+    // log request
+    logSession(req, res, 500);
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
@@ -77,7 +83,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // 3. post new product
-router.post("/", cors(), async (req, res) => {
+router.post("/", allowAccess('admin', 'superadmin'), cors(), async (req, res) => {
   try {
     let new_product = {
       product_id: req.body.product_id,
@@ -106,7 +112,7 @@ router.post("/", cors(), async (req, res) => {
 });
 
 // 4. update product by id
-router.put("/:id", async (req, res) => {
+router.put("/:id", allowAccess('admin', 'superadmin'), async (req, res) => {
   try {
     const result = await product_collection.updateOne(
       { _id: new ObjectId(req.params.id) },
@@ -135,7 +141,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // 5. delete product by id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", allowAccess('admin', 'superadmin'), async (req, res) => {
   try {
     const result = await product_collection.deleteOne({ _id: new ObjectId(req.params.id) });
     res.status(200).send({ message: "success", content: result });

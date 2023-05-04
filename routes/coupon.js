@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { coupon_collection } = require("../utils/mongo");
 const { ObjectId } = require("mongodb");
+const { allowAccess } = require("./authMiddleware");
 
 // =================SETTING UP ROUTES=================
 // prefix: /v1/coupon
 
 // 1.Get all coupon list and sort by time
-router.get("/", async (req, res) => {
+router.get("/", allowAccess('admin', 'superadmin'), async (req, res) => {
   try {
     let result = await coupon_collection
       .find({})
@@ -54,7 +55,7 @@ router.get("/code/:coupon_code", async (req, res) => {
 });
 
 // 3. get coupon by id
-router.get("/:id", async (req, res) => {
+router.get("/:id", allowAccess('admin', 'superadmin'), async (req, res) => {
   try {
     oid = new ObjectId(req.params.id);
     const result = await coupon_collection.findOne({ _id: oid });
@@ -65,7 +66,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // 4. PUT a coupon by id
-router.put("/:id", async (req, res) => {
+router.put("/:id", allowAccess('admin', 'superadmin'), async (req, res) => {
   try {
     const { id } = req.params;
     const {
@@ -130,7 +131,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // 5. post a coupon
-router.post("/", async (req, res) => {
+router.post("/", allowAccess('admin', 'superadmin'), async (req, res) => {
   try {
     const {
       coupon_code,
@@ -189,7 +190,7 @@ router.post("/", async (req, res) => {
 });
 
 // 6. delete a coupon by id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", allowAccess('admin', 'superadmin'), async (req, res) => {
   try {
     const { id } = req.params;
     const result = await coupon_collection.deleteOne({ _id: new ObjectId(id) });

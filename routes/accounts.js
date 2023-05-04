@@ -14,6 +14,11 @@ const bcrypt = require("bcryptjs");
 // =================SETTING UP ROUTES=================
 // prefix: /v1/account
 
+
+router.get("/adminauth", allowAccess('admin', 'superadmin'), async (req, res) => {
+  res.send({ message: "Admin authenticated" });
+});
+
 // 1. sign up an account (customer)
 // Only allow access if not signed in
 router.post("/signup", denyAccess(), async (req, res) => {
@@ -129,8 +134,8 @@ router.post("/login", denyAccess(), async (req, res) => {
         req.session.user = result._id.toString();
         req.session.role = result.role;
         req.session.email = result.email;
-        req.session.ip = req.ip;
-        req.session.user_agent = req.headers['user-agent'];
+        // req.session.ip = req.ip;
+        // req.session.user_agent = req.headers['user-agent'];
         req.session.active = true;
       }
       logSession(req, res, 200);
@@ -285,7 +290,7 @@ router.post("/signout/", allowAccess(), async (req, res) => {
     res.send({ message: "Sign out success" });
   } catch (error) {
     logSession(req, res, 500);
-    res.status(500).send('something wrong ' + error);
+    res.status(500).send({err : 'something wrong ' + error});
   }
 });
 

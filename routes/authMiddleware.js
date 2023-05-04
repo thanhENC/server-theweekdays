@@ -76,7 +76,7 @@ function allowAccess(...roles) {
             // if have session but not logged in, return unauthorized
             if (req.session.user == null) {
                 logSession(req, res, 401);
-                res.status(401).json({ error: 'Unauthorized', message: 'Not login yet' });                
+                res.status(401).json({ error: 'Unauthorized', message: 'Not login yet' });
                 return;
             }
             // if have session and no role required, return next
@@ -86,14 +86,14 @@ function allowAccess(...roles) {
             // if have session but not have role permission, return forbidden
             if (!roles.includes(req.session.role)) {
                 logSession(req, res, 403);
-                res.status(403).json({ error: 'Forbidden', message: 'You dont have permission to access this resource' });                
+                res.status(403).json({ error: 'Forbidden', message: 'You dont have permission to access this resource' });
                 return;
             }
             next();
         }
         catch (error) {
             logSession(req, res, 500);
-            res.status(500).json({ error: 'Internal server error', message: error.message });            
+            res.status(500).json({ error: 'Internal server error', message: error.message });
         }
     }
 }
@@ -107,7 +107,7 @@ function denyAccess(...roles) {
             if (roles.length == 0) {
                 if (req.session.user != null) {
                     logSession(req, res, 403);
-                    res.status(403).json({ error: 'Forbidden', message: 'You are already logged in' });
+                    res.status(403).json({ error: 'Forbidden', message: 'You are already logged in. This API only allows anonymous user' });
                     return;
                 } else {
                     // allow anonymous
@@ -129,7 +129,7 @@ function denyAccess(...roles) {
         }
         // ==================== CATCH ====================
         catch (error) {
-            logSession(req, res, 500);            
+            logSession(req, res, 500);
             res.status(500).json({ error: 'Internal server error', message: error.message });
         }
     }
