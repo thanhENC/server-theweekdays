@@ -4,50 +4,65 @@ const router = express.Router();
 
 const { address_collection } = require('../utils/mongo');
 const { ObjectId } = require('mongodb');
+const { verifyToken } = require('../middleware/auth');
 
 // =================SETTING UP ROUTES=================
+// port: 4000
 // prefix: /v1/address
 
-// 1. get all address list by customer id
-router.get("/customer/:id", async (req, res) => {
+// 1. GET all address list by customer id
+router.get("/customer/:id", verifyToken(), async (req, res) => {
     try {
-        const result = await address_collection.find({ customer_id: req.params.id }).sort({ is_default: -1, date_modified: -1 }).toArray();
+        let cus_id = req.params.id;
+        if (req.user.role == 'customer') {
+            cus_id = req.user.sub;
+        }
+        const result = await address_collection.find({ customer_id: cus_id }).sort({ is_default: -1, date_modified: -1 }).toArray();
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Something wrong: " + error });
     }
 })
 
-// 2. get specific address by id
-router.get("/:id", async (req, res) => {
+// 2. GET specific address by id
+router.get("/:id", verifyToken(), async (req, res) => {
     try {
         oid = new ObjectId(req.params.id);
         const result = await address_collection.findOne({ _id: oid });
+        if (!result) {
+            res.status(400).send({ message: "No address" });
+        }
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Something wrong: " + error });
     }
 })
 
-// 3. get default address by customer id
-router.get("/default/:id", async (req, res) => {
+// 3. GET default address by customer id
+router.get("/default/:id", verifyToken(), async (req, res) => {
     try {
-        const result = await address_collection.findOne({ customer_id: req.params.id, is_default: true });
+        let cus_id = req.params.id;
+        if (req.user.role == 'customer') {
+            cus_id = req.user.sub;
+        }
+        const result = await address_collection.findOne({ customer_id: cus_id, is_default: true });
+        if (!result) {
+            res.status(400).send({ message: "No default address" });
+        }
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Something wrong: " + error });
     }
 })
 
-// 4. post new address
-router.post("/:customer_id", async (req, res) => {
+// 4. CREATE new address
+// Use for customer site to create new address
+router.post("/", verifyToken('customer'), async (req, res) => {
     try {
-        const customer_id = req.params.customer_id;
-        const default_address = await address_collection.findOne({ customer_id: customer_id, is_default: true });
-
-        req.body.customer_id = customer_id;
+        req.body.customer_id = req.user.sub;
         req.body.date_modified = new Date().toISOString();
 
+        const default_address = await address_collection.findOne({ customer_id: req.user.sub, is_default: true });
         if (!default_address) {
             req.body.is_default = true;
             const result = await address_collection.insertOne(req.body);
@@ -58,12 +73,13 @@ router.post("/:customer_id", async (req, res) => {
             res.send(result);
         }
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Something wrong: " + error });
     }
 })
 
-// 5. Put an address detail
-router.put("/:id", async (req, res) => {
+// 5. UPDATE an address detail
+// Use for customer site to update address
+router.put("/:id", verifyToken('customer'), async (req, res) => {
     try {
         oid = new ObjectId(req.params.id)
         const result = await address_collection.updateOne(
@@ -80,40 +96,60 @@ router.put("/:id", async (req, res) => {
             });
         res.send(result);
     } catch (error) {
-        res.send({ message: "failed" });
+        res.status(500).send({ message: "Something wrong: " + error });
     }
 })
 
-// 6. Put - set default address
-router.put("/default/:cus_id/:id", async (req, res) => {
+// 6. SET default address
+// Use for customer site to set default address
+router.put("/default/:adr_id", verifyToken('customer'), async (req, res) => {
+    try {
+        oid = new ObjectId(req.params.adr_id);
+        customer_id = req.user.sub;
+
+        // Check if address_id belong to customer_id
+        const address_belong = await address_collection.findOne({ _id: oid, customer_id });
+        if (!address_belong) {
+            res.status(400).send({ message: "Address not belong to customer" });
+        }
+
+        const result = await address_collection.updateOne({ _id: oid }, { $set: { is_default: true } });
+
+        await address_collection.updateMany({ customer_id, _id: { $ne: oid } }, { $set: { is_default: false } });
+
+        res.send(result);
+    } catch (error) {
+        res.status(500).send({ message: "Something wrong: " + error });
+    }
+});
+
+// 7. DELETE an address
+// Use for customer site to delete address
+router.delete("/:id", verifyToken('customer'), async (req, res) => {
     try {
         oid = new ObjectId(req.params.id);
-        cus_id = req.params.cus_id;
-        const unflag_current_default_address = await address_collection.findOneAndUpdate(
-            { customer_id: cus_id, is_default: true },
-            {
-                $set:
-                {
-                    is_default: false,
-                    date_modified: new Date().toISOString()
-                }
-            });
-        const flag_new_default_address = await address_collection.findOneAndUpdate(
-            { _id: oid },
-            {
-                $set:
-                {
-                    is_default: true,
-                    date_modified: new Date().toISOString()
-                }
-            });
-        res.send({
-            message: "success",
-            flag_new_default_address: flag_new_default_address,
-            unflag_current_default_address: unflag_current_default_address
-        });
-    } catch (error) {
-        res.send({ message: "failed" });
+        customer_id = req.user.sub;
+
+        // Check if address_id belong to customer_id
+        const address_belong = await address_collection.findOne({ _id: oid, customer_id });
+        if (!address_belong) {
+            return res.status(400).send({ message: "Address not belong to customer" });
+        }
+
+        // 1. Delete address
+        const result = await address_collection.deleteOne({ _id: oid });
+        // 2. Check if default address still exist
+        const address_list_lenght = await address_collection.find({ customer_id }).toArray().length;
+        if (address_list_lenght != 0) {
+            const default_address = await address_collection.findOne({ customer_id, is_default: true });
+            if (!default_address) {
+                const new_default_address = await address_collection.findOneAndUpdate({ customer_id }, { $set: { is_default: true } });
+            }
+        }
+        return res.send(result);
+    }
+    catch (error) {
+        return res.status(500).send({ message: "Something wrong: " + error });
     }
 });
 
