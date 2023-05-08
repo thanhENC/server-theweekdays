@@ -1,9 +1,10 @@
 {
   "name": "theweekdays",
-  "version": "1.0.3",
-  "description": "The Weekdays Server 1.0.3 - Authorization and Authentication apply on coupon routes",
+  "version": "1.0.4",
+  "description": "The Weekdays Server 1.0.4 - JWT",
   "main": "index.js",
   "scripts": {
+    "auth": "nodemon authServer.js",
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +20,7 @@
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.0",
     "mongoclient": "^1.0.3",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.3",
