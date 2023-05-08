@@ -19,8 +19,41 @@ const transporter = nodemailer.createTransport({
 // Email objects
 const FROM = "The Weekdays <noreply@theweekdays.live>";
 const WELCOME_SUBJECT = "Welcome to The Weekdays";
+const NEW_ADMIN_CREATED_SUBJECT = "[The Weekdays] New admin created";
 
-function welcomeEmail(username, password) {
+// Send welcome email
+function sendEmailConfirmCreateAdmin(email, username) {
+    const mailOptions = {
+        from: FROM,
+        to: ['noreply@theweekdays.live', email],
+        subject: NEW_ADMIN_CREATED_SUBJECT,
+        text: 'This is email for new admin registration at Fashion Website - The Weekdays',
+        html: welcomeEmail(username)
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+        }
+    });
+}
+
+// Send email welcome new customer
+function sendEmailWelcomeCustomer(email, username) {
+    const mailOptions = {
+        from: FROM,
+        to: email,
+        subject: WELCOME_SUBJECT,
+        text: 'This is email for new customer registration at Fashion Website - The Weekdays',
+        html: welcomeEmail(username)
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error)
+        }
+    });
+}
+
+function welcomeEmail(username) {
     return `<!DOCTYPE html>
     <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
     
@@ -204,7 +237,7 @@ function welcomeEmail(username, password) {
                                                                                 style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 25.5px;">
                                                                                 <span class="tinyMce-placeholder"
                                                                                     style="font-size:17px;">${new
-                                                                                    Date().toLocaleDateString('vi-VN')}</span>
+            Date().toLocaleDateString('vi-VN')}</span>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -1330,4 +1363,4 @@ function welcomeEmail(username, password) {
     </html>`
 }
 
-module.exports = { welcomeEmail, transporter, FROM, WELCOME_SUBJECT }
+module.exports = { sendEmailConfirmCreateAdmin, sendEmailWelcomeCustomer }
