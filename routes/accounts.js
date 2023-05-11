@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { adminaccount_collection, customeraccount_collection, customer_collection } = require("../utils/mongo");
+const { adminaccount_collection, customeraccount_collection, customer_collection, cart_collection, wishlist_collection } = require("../utils/mongo");
 const { ObjectId } = require("mongodb");
 const { sendEmailWelcomeCustomer, sendEmailConfirmCreateAdmin } = require("../utils/email");
 const bcrypt = require("bcryptjs");
@@ -70,14 +70,35 @@ router.post("/signup", async (req, res) => {
       // 1.2.3. Insert new customer info into database
       const create_info_result = await customer_collection.insertOne(payload);
 
+      // 1.2.4. Create new cart object
+      const cart = {
+        _id: new ObjectId(create_account_result.insertedId.toString()),
+        customer_id: create_account_result.insertedId.toString(),
+        products: [],
+        total: 0
+      }
+
+      // 1.2.5. Insert new cart into database
+      const create_cart_result = await cart_collection.insertOne(cart);
+
+      // create new wishlist object
+      const wishlist = {
+        _id: new ObjectId(create_account_result.insertedId.toString()),
+        customer_id: create_account_result.insertedId.toString(),
+        products: []
+      }
+
+      // insert new wishlist into database
+      const create_wishlist_result = await wishlist_collection.insertOne(wishlist);
+
       // 1.2.4. Send email to customer
       sendEmailWelcomeCustomer(req.body.email, req.body.username);
 
       // 1.2.5. Send response
-      res.send({ account: create_account_result, info: create_info_result });
+      res.send({ account: create_account_result, info: create_info_result, cart: create_cart_result, wishlist: create_wishlist_result });
     }
   } catch (error) {
-    res.status(500).send('something wrong ' + error);
+    res.status(500).send({ message: 'something wrong ' + error });
   }
 });
 

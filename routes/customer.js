@@ -6,8 +6,6 @@ const { route } = require('./customer');
 
 const { default_malecustomer_image, default_femalecustomer_image } = require('../utils/default_resource');
 
-
-
 // =================SETTING UP ROUTES=================
 // prefix: /v1/customer 
 
