@@ -78,6 +78,11 @@ app.use("/v1/order", orderRoute);
 const productRoute = require("./routes/product");
 app.use("/v1/products", productRoute);
 
+// VIII. Wishlist: /v1/wishlist
+const wishlistRoute = require("./routes/wishlist");
+app.use("/v1/wishlist", wishlistRoute);
+
+
 // Continue with other routes...........
 
 // ====================================================
