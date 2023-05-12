@@ -35,6 +35,12 @@ router.get("/", async (req, res) => {
       temp = temp.slice((req.query.page - 1) * 10, req.query.page * 10);
     }
 
+    if (req.query.category) {
+      temp = temp.filter((product) => {
+        return product.category.includes(req.query.category);
+      });
+    }
+
     if (req.query.search) {
       temp = temp.filter((product) => {
         return product.name.toLowerCase().includes(req.query.search.toLowerCase());

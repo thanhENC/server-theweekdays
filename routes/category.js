@@ -13,6 +13,13 @@ const { ObjectId } = require('mongodb');
 router.get("/", async (req, res) => {
     try {
         const result = await category_collection.find({}).sort({ date_modified: -1 }).toArray();
+
+        if(req.query.type) {
+            result = result.filter((category) => {
+                return category.type == req.query.type;
+            })
+        }
+
         res.send(result);
     } catch (error) {
         res.status(500).send({ message: "Failed" });
