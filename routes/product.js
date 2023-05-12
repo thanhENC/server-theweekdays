@@ -8,6 +8,7 @@ const { ObjectId } = require("mongodb");
 const { allowAccess, logSession } = require("./authMiddleware");
 
 const cors = require("cors");
+const { verifyToken } = require("../middleware/auth");
 
 // =================SETTING UP ROUTES=================
 // prefix: /v1/products
@@ -33,6 +34,12 @@ router.get("/", async (req, res) => {
 
     if (req.query.page) {
       temp = temp.slice((req.query.page - 1) * 10, req.query.page * 10);
+    }
+
+    if (req.query.category) {
+      temp = temp.filter((product) => {
+        return product.category.includes(req.query.category);
+      });
     }
 
     if (req.query.search) {

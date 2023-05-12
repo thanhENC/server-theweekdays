@@ -38,7 +38,7 @@ app.get("/api", (req, res) => {
 
 // I. Auth
 const authRoute = require("./routes/accounts");
-app.use("/v1", authRoute);
+app.use("/v1/auth", authRoute);
 
 // Continue with other routes...........
 

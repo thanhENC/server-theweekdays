@@ -12,7 +12,7 @@ const { default_malecustomer_image } = require("../utils/default_resource");
 // ================= HELPER FUNCTION =================
 // generate token and refresh_token
 function generateToken(payload) {
-  const accessToken = jwt.sign(payload, ACCESS_TOKEN_SECRET, { expiresIn: '30m' }); // should be 15-30 minutes
+  const accessToken = jwt.sign(payload, ACCESS_TOKEN_SECRET, { expiresIn: '45m' }); // should be 15-30 minutes
   const refreshToken = jwt.sign(payload, REFRESH_TOKEN_SECRET, { expiresIn: '14d' }); // should be 1-2 weeks
   return { accessToken, refreshToken };
 }
@@ -31,7 +31,16 @@ async function updateRefreshToken(payload, refreshToken) {
 // =================SETTING UP ROUTES=================
 // server: Auth
 // port: 5000
-// prefix: /v1/
+// prefix: /v1/auth
+
+// check have logged in or not
+router.get("/verify", verifyToken(), async (req, res) => {
+  try {
+    res.send({ message: "Logged in" });
+  } catch (error) {
+    res.status(500).send({ message: 'something wrong ' + error });
+  }
+});
 
 // 1. sign up an account (customer) - DONE
 router.post("/signup", async (req, res) => {
